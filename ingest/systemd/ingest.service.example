@@ -1,0 +1,27 @@
+[Unit]
+Description=Email-to-Vikunja ingest service
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=<USER>
+Group=<USER>
+WorkingDirectory=/path/to/todo/ingest
+EnvironmentFile=/path/to/todo/.env
+EnvironmentFile=/path/to/todo/ingest/.env
+ExecStart=/path/to/todo/ingest/.venv/bin/python -m ingest
+Restart=on-failure
+RestartSec=10s
+StandardOutput=journal
+StandardError=journal
+
+# Hardening
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/path/to/todo/ingest
+
+[Install]
+WantedBy=multi-user.target

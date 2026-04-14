@@ -1,0 +1,14 @@
+[Unit]
+Description=Weekly Gmail watch() renewal for todo ingest
+Requires=ingest-watch-renew.service
+
+[Timer]
+# Fire every Monday at 04:00 local. Gmail watch() lasts 7 days; this leaves a ~1-day
+# buffer. Persistent=true catches up on the next boot if the scheduled run was missed
+# (server off, maintenance window, etc).
+OnCalendar=Mon *-*-* 04:00:00
+Persistent=true
+RandomizedDelaySec=10min
+
+[Install]
+WantedBy=timers.target

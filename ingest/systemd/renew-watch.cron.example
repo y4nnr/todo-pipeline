@@ -1,0 +1,5 @@
+# Renew Gmail watch() registration weekly (it expires every 7 days).
+# Install with: crontab -e   (as the user that runs the ingest service)
+# Then add this line, adjusting the path:
+#
+# 0 4 * * 1 cd /path/to/todo/ingest && /path/to/todo/ingest/.venv/bin/python setup_watch.py >> /path/to/todo/ingest/logs/renew-watch.log 2>&1

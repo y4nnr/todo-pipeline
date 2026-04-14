@@ -1,0 +1,34 @@
+# Secrets & local config
+.env
+.env.*
+!.env.example
+CLAUDE.md
+.claude/
+
+# Runtime data & logs
+data/
+ingest/logs/
+ingest/secrets/
+
+# OAuth / service-account credentials
+ingest/credentials.json
+ingest/service-account.json
+ingest/token.json
+
+# Deployed systemd units (use .example templates instead)
+ingest/systemd/*.service
+ingest/systemd/*.timer
+ingest/systemd/*.cron
+!ingest/systemd/*.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+**/.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/

@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily heartbeat timer for todo ingest
+Requires=ingest-heartbeat.service
+
+[Timer]
+OnCalendar=*-*-* 09:00:00
+Persistent=true
+RandomizedDelaySec=5min
+
+[Install]
+WantedBy=timers.target

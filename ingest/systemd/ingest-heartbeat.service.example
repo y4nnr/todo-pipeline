@@ -1,0 +1,21 @@
+[Unit]
+Description=Daily heartbeat check for todo ingest pipeline
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=<USER>
+Group=<USER>
+WorkingDirectory=/path/to/todo/ingest
+EnvironmentFile=/path/to/todo/.env
+EnvironmentFile=/path/to/todo/ingest/.env
+ExecStart=/path/to/todo/ingest/.venv/bin/python -m ingest.heartbeat
+StandardOutput=journal
+StandardError=journal
+
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/path/to/todo/ingest
