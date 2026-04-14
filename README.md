@@ -19,6 +19,7 @@ structured task appears in the right Vikunja project a few seconds later.
   - `tr:` / `toread:` → To read
   - `tw:` / `towatch:` → To watch
   - `tb:` / `tobuy:` → To buy
+  - `tl:` / `tolearn:` → To learn
 - **Claude-powered extraction** — title, description, due date, priority are
   inferred from natural-language subject + body via Anthropic tool-use.
 - **Idempotent & durable** — Postgres tracks every message id, so retries

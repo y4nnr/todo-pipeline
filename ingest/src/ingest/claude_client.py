@@ -12,15 +12,21 @@ Rules:
 - title: ≤80 chars, no leading routing prefix (td/tr/tw/tb/todo/…)
 - description: keep useful context from the body; empty string if none
 - due_date: ISO-8601 date or datetime if the email implies a deadline; null otherwise
-- priority: 1=low, 3=normal, 5=urgent. Default 3.
+- priority: 1=low, 3=medium, 4=high, 5=urgent. Default to 1 (low).
+  Only raise priority if the email explicitly uses an urgency expression:
+    * "medium" / "normal" / "soon" → 3
+    * "high" / "important" / "priority" → 4
+    * "urgent" / "ASAP" / "critical" / "today" / "now" / "emergency" → 5
+  If no such expression is present, keep priority at 1 regardless of the bucket or content.
 - Respond ONLY by calling the create_task tool. No prose.
 """
 
 _BUCKET_HINTS = {
     "todo":    "Bucket: TODO — an actionable task. Title should be imperative (e.g. 'Call the dentist').",
-    "toread":  "Bucket: TO READ — article / blog / paper to read later. Title names the topic or source (e.g. 'Article: Rust async performance'). due_date usually null. priority usually 1-2.",
-    "towatch": "Bucket: TO WATCH — video / talk / film. Title names the item (e.g. 'Talk: Simple Made Easy by Rich Hickey'). due_date usually null. priority usually 1-2.",
-    "tobuy":   "Bucket: TO BUY — shopping item. Title is the item (e.g. 'Oat milk'). due_date only if urgent. priority usually 2-3.",
+    "toread":  "Bucket: TO READ — article / blog / paper to read later. Title names the topic or source (e.g. 'Article: Rust async performance'). due_date usually null.",
+    "towatch": "Bucket: TO WATCH — video / talk / film. Title names the item (e.g. 'Talk: Simple Made Easy by Rich Hickey'). due_date usually null.",
+    "tobuy":   "Bucket: TO BUY — shopping item. Title is the item (e.g. 'Oat milk'). due_date only if explicitly needed by a date.",
+    "tolearn": "Bucket: TO LEARN — course / tutorial / skill or topic to study. Title names the subject or resource (e.g. 'Learn: Rust ownership model'). due_date only if there's a deadline (exam, cohort start).",
 }
 
 _TOOL = {

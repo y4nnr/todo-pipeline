@@ -47,6 +47,7 @@ class Settings(BaseSettings):
     bucket_toread_project_id: int = 2
     bucket_towatch_project_id: int = 3
     bucket_tobuy_project_id: int = 4
+    bucket_tolearn_project_id: int = 6
 
     # Alerting (ntfy.sh public). Topic string = auth — keep secret.
     ntfy_url: str = "https://ntfy.sh"

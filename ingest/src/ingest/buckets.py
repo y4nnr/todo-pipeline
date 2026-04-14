@@ -18,6 +18,7 @@ BUCKETS: tuple[Bucket, ...] = (
     Bucket("toread",  settings.bucket_toread_project_id,  ("tr", "toread")),
     Bucket("towatch", settings.bucket_towatch_project_id, ("tw", "towatch")),
     Bucket("tobuy",   settings.bucket_tobuy_project_id,   ("tb", "tobuy")),
+    Bucket("tolearn", settings.bucket_tolearn_project_id, ("tl", "tolearn")),
 )
 
 
